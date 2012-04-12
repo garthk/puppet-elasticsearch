@@ -108,8 +108,8 @@ class elasticsearch(
 
   file { $configfile:
     ensure => present,
-    source => ["puppet:///site-elasticsearch/${fqdn}/elasticsearch.yml",
-               "puppet:///site-elasticsearch/elasticsearch.yml",
+    source => ["puppet:///files/site-elasticsearch/${fqdn}/elasticsearch.yml",
+               "puppet:///files/site-elasticsearch/elasticsearch.yml",
                "puppet:///modules/elasticsearch/elasticsearch.yml"],
     owner  => root,
     group  => root,
@@ -117,8 +117,8 @@ class elasticsearch(
 
   file { $logconfigfile:
     ensure => present,
-    source => ["puppet:///site-elasticsearch/${fqdn}/logging.yml",
-               "puppet:///site-elasticsearch/logging.yml",
+    source => ["puppet:///files/site-elasticsearch/${fqdn}/logging.yml",
+               "puppet:///files/site-elasticsearch/logging.yml",
                "puppet:///modules/elasticsearch/logging.yml"],
     owner  => root,
     group  => root,

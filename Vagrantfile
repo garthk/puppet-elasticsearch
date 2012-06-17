@@ -7,6 +7,7 @@ Vagrant::Config.run do |config|
   config.vm.host_name = "elasticsearch"
   config.vm.network :hostonly, "192.168.31.46"
   config.vm.share_folder "modules/elasticsearch", "/tmp/vagrant-puppet/modules/elasticsearch", ".", :create => true
+
   config.vm.provision :puppet do |puppet|
     puppet.manifests_path = "tests"
     puppet.manifest_file = "vagrant.pp"

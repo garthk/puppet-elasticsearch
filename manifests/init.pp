@@ -133,10 +133,18 @@ class elasticsearch(
     ensure => present,
     source => "puppet:///elasticsearch/etc-init-elasticsearch.conf",
   }
+  
+  # for http://projects.puppetlabs.com/issues/14297
+  file { '/etc/init.d/elasticsearch':
+    ensure => link,
+    target => "/lib/init/upstart-job",
+  }
 
   service { 'elasticsearch':
-    ensure   => running, 
-    enable   => true,
-    provider => upstart,
+    ensure        => running, 
+    hasrestart    => true,
+    hasstatus     => true,
+    provider      => 'upstart',
+    subscribe     => [ File[$upstartfile], File['/etc/init.d/elasticsearch'] ],
   }
 }

@@ -6,7 +6,7 @@ test:
 vm:
 	vagrant up
 
-es_version = 0.18.7
+es_version = 0.19.4
 es_tarchive = elasticsearch-$(es_version).tar.gz
 es_source = http://cloud.github.com/downloads/elasticsearch/elasticsearch
 

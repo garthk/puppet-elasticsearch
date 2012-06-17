@@ -1,5 +1,5 @@
 class elasticsearch::params {
-  $version = "0.18.7"
+  $version = "0.19.4"
   $java_package = "openjdk-6-jre-headless"
   $dbdir = "/var/lib/elasticsearch"
   $logdir = "/var/log/elasticsearch"
@@ -133,10 +133,18 @@ class elasticsearch(
     ensure => present,
     source => "puppet:///elasticsearch/etc-init-elasticsearch.conf",
   }
+  
+  # for http://projects.puppetlabs.com/issues/14297
+  file { '/etc/init.d/elasticsearch':
+    ensure => link,
+    target => "/lib/init/upstart-job",
+  }
 
   service { 'elasticsearch':
-    ensure   => running, 
-    enable   => true,
-    provider => upstart,
+    ensure        => running, 
+    hasrestart    => true,
+    hasstatus     => true,
+    provider      => 'upstart',
+    subscribe     => [ File[$upstartfile], File['/etc/init.d/elasticsearch'] ],
   }
 }

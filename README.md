@@ -18,6 +18,8 @@ elasticsearch version 0.19. I can't use 0.19 with the current version of
     cd elasticsearch
     make fetch # for default 0.18.7 download
 
+Without `make`, do `./download.sh`.
+
 ## Usage
 
     class { 'elasticsearch':
